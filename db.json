@@ -1,0 +1,70 @@
+{
+  "crousal": [
+    {
+      "id": 1,
+      "title": "NUTRIORG",
+      "image": "https://cdn.sellerapp.in/Logos/slrp-1326627.png",
+      "dis": "184km",
+      "type": "Home & Decor"
+    },
+    {
+      "id": 1,
+      "title": "EAGAL FORM",
+      "image": "https://cdn.sellerapp.in/Logos/slrp-1429283.png",
+      "dis": "164km",
+      "type": "Home & Decor"
+    },
+    {
+      "id": 1,
+      "title": "CCKDE-SPECES",
+      "image": "https://cdn.sellerapp.in/Logos/slrp-1326627.png",
+      "dis": "184km",
+      "type": "Food Item"
+    },
+    {
+      "id": 1,
+      "title": "tRUEWARE",
+      "image": "https://cdn.sellerapp.in/Logos/slrp-1386607.jpg",
+      "dis": "184km",
+      "type": "Home & Decor"
+    },
+    {
+      "id": 1,
+      "title": "KEEP IT FRESH",
+      "image": "https://cdn.sellerapp.in/Logos/slrp-1401571.png",
+      "dis": "484km",
+      "type": "Home & Decor"
+    },
+    {
+      "id": 1,
+      "title": "INBI.DENT",
+      "image": "https://cdn.sellerapp.in/Logos/slrp-1429283.png",
+      "dis": "184km",
+      "type": "Home & Decor"
+    },
+    {
+      "id": 1,
+      "title": "SANDE FOOD",
+      "image": "https://cdn.sellerapp.in/Logos/slrp-1458197.png",
+      "dis": "184km",
+      "type": "Home & Decor"
+    },
+    {
+      "id": 1,
+      "title": "EAGAL FORM",
+      "image": "https://cdn.sellerapp.in/Logos/slrp-1457637.png",
+      "dis": "194km",
+      "type": "Home & Decor"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
