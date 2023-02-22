@@ -1,6 +1,5 @@
 import React from "react";
 import {
-  SimpleGrid,
   Box,
   Img,
   Input,
@@ -9,15 +8,18 @@ import {
   PopoverTrigger,
   PopoverContent,
   PopoverHeader,
-  PopoverBody,
-  PopoverFooter,
   PopoverArrow,
   PopoverCloseButton,
-  PopoverAnchor,
   Text,
+  PopoverBody,
+  Portal,
+  PopoverFooter,
   Button,
 } from "@chakra-ui/react";
+import { Navigate } from "react-router-dom";
+import { Link as RouterLink } from "react-router-dom";
 import { useState } from "react";
+import LoginPage from "../Pages/LoginPage";
 const Navbar = () => {
   const [city, setCity] = useState("Division");
 
@@ -30,16 +32,19 @@ const Navbar = () => {
         border="1px solid red"
       >
         <div>
-          <Img
-            paddingLeft={4}
-            h="58px"
-            w="200px"
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjyc1pua3yHWIOr9ko4MJfiQ7PZRm1zrjXYvqx8kCT&s"
-          />
+          <RouterLink to="/">
+            <Img
+              paddingLeft={4}
+              h="56px"
+              w="200px"
+              src={require(`../Images/logo.jpg`)}
+              alt="image"
+            />
+          </RouterLink>
         </div>
         <Box display="flex" w={"auto"} alignItems="center">
           <Center textAlign={"center"} mt={2}>
-            <Input w={200} placeholder="SEARCH l Search for products " />
+            <Input w={"500px"} placeholder="SEARCH l Search for products " />
           </Center>
           <Popover>
             <PopoverTrigger>
@@ -76,12 +81,20 @@ const Navbar = () => {
           marginRight={5}
         >
           <Box marginRight={2} alignItems="center" display="flex">
-            {" "}
-            <Img
-              src="https://cdn-icons-png.flaticon.com/512/456/456212.png"
-              w={4}
-            />{" "}
-            SignIn/Register
+            <Popover>
+              <PopoverTrigger>
+                <RouterLink to="/login">
+                  <Button>
+                    {" "}
+                    <Img
+                      src="https://cdn-icons-png.flaticon.com/512/456/456212.png"
+                      w={4}
+                    />{" "}
+                    SignIn/Register
+                  </Button>
+                </RouterLink>
+              </PopoverTrigger>
+            </Popover>
           </Box>
           <Box display="flex" marginRight={2}>
             <Img

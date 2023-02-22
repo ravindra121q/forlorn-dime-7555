@@ -10,7 +10,9 @@ const HomePage = () => {
   useEffect(() => {});
   return (
     <div>
-      <div id="crousal"></div>
+      <div id="crousal">
+        <h1>Home Page</h1>
+      </div>
     </div>
   );
 };
