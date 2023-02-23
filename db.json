@@ -57,11 +57,47 @@
       "type": "Home & Decor"
     }
   ],
-  "comments": [
+  "UserData": [
     {
       "id": 1,
       "body": "some comment",
       "postId": 1
+    },
+    {
+      "name": "da",
+      "email": "d",
+      "password": "vda",
+      "id": 2
+    },
+    {
+      "name": "asd",
+      "email": "dasd",
+      "password": "as",
+      "id": 3
+    },
+    {
+      "name": "asd",
+      "email": "dasd",
+      "password": "as",
+      "id": 4
+    },
+    {
+      "name": "asd",
+      "email": "dasd",
+      "password": "as",
+      "id": 5
+    },
+    {
+      "name": "Ravindra",
+      "email": "ravindra.rk62@gmail.com",
+      "password": "12345",
+      "id": 6
+    },
+    {
+      "name": "Ravindra",
+      "email": "ravindra.rk62@gmail.com",
+      "password": "12345",
+      "id": 7
     }
   ],
   "profile": {
