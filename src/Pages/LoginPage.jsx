@@ -34,7 +34,7 @@ const SignUpPage = () => {
     data.map((e) => {
       if (e.email === email && e.password === password) {
         console.log("s");
-        return login();
+        return <login />;
       }
     });
   };

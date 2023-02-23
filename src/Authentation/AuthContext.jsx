@@ -9,9 +9,9 @@ export const AuthContextProvider = ({ children }) => {
     setIsAuth(true);
   };
   const logout = () => {};
-  if (isAuth) {
-    <Navigate to="/dashboard" />;
-  }
+  // if (!isAuth) {
+  //   return <Navigate to="/login" />;
+  // }
   return (
     <AuthContext.Provider value={(isAuth, login, logout)}>
       {children}

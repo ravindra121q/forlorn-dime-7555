@@ -15,8 +15,9 @@ import {
   Portal,
   PopoverFooter,
   Button,
+  SimpleGrid,
 } from "@chakra-ui/react";
-import { Navigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { Link as RouterLink } from "react-router-dom";
 import { useState } from "react";
 import LoginPage from "../Pages/LoginPage";
@@ -80,22 +81,24 @@ const Navbar = () => {
           padding={"13px 15px 13px 15px"}
           marginRight={5}
         >
-          <Box marginRight={2} alignItems="center" display="flex">
-            <Popover>
-              <PopoverTrigger>
-                <RouterLink to="/login">
-                  <Button>
-                    {" "}
-                    <Img
-                      src="https://cdn-icons-png.flaticon.com/512/456/456212.png"
-                      w={4}
-                    />{" "}
-                    SignIn/Register
-                  </Button>
-                </RouterLink>
-              </PopoverTrigger>
-            </Popover>
-          </Box>
+          <SimpleGrid columns={[0, 1]}>
+            <Box marginRight={2} alignItems="center" display="flex">
+              <Popover>
+                <PopoverTrigger>
+                  <RouterLink to="/login">
+                    <Button>
+                      {" "}
+                      <Img
+                        src="https://cdn-icons-png.flaticon.com/512/456/456212.png"
+                        w={4}
+                      />{" "}
+                      SignIn/Register
+                    </Button>
+                  </RouterLink>
+                </PopoverTrigger>
+              </Popover>
+            </Box>
+          </SimpleGrid>
           <Box display="flex" marginRight={2}>
             <Img
               src="https://cdn-icons-png.flaticon.com/512/1077/1077035.png"
@@ -132,7 +135,9 @@ const Navbar = () => {
             fontSize={"18px"}
             fontFamily="Marriweather"
           >
-            <Text>Fashion</Text>
+            <RouterLink to="/product">
+              <Text>Fashion</Text>
+            </RouterLink>
             <Text>Personal & Beauty Care</Text>
             <Text>Home Decor</Text>
             <Text>Product Near Me</Text>
