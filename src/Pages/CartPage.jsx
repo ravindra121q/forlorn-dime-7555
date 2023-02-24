@@ -1,51 +1,37 @@
 import React from "react";
-import { useEffect } from "react";
-import axios from "axios";
-import App23 from "../Crosal/first";
-import { Box, Img, SimpleGrid, Text, HStack } from "@chakra-ui/react";
-import "../Crosal/home.module.css";
-import SimpleSlider2 from "../Crosal/second";
+import { Box, Text, Img, HStack, SimpleGrid, Button } from "@chakra-ui/react";
 
-import SimpleSlider3 from "../Crosal/third";
-const HomePage = () => {
-  const getData = () => {
-    axios
-      .get(`http://localhost:8080/crousal`)
-      .then((res) => console.log(res.data));
-  };
-
+const CartPage = (data) => {
+  // const { data } = props;
+  console.log(data);
   return (
     <Box>
-      <div id="crousal">
-        <App23 />
-      </div>
-      <Box mt={13}>
-        <hr />
-      </Box>
-      <Box>
-        <SimpleSlider2 />
-      </Box>
-      <Box>
-        <SimpleSlider3 />
-      </Box>
-      <Box mt={0} overflow="auto">
-        <Img src={require(`../Images/pr.jpg`)} alt="img" />
-      </Box>
-      <Box maxW={"85%"} margin="auto" mt={12}>
-        <SimpleGrid columns={2} spacing={7}>
-          <Box>
-            <Img src="https://cdn.plotch.io/image/upload/C/V/1671110234_SG9tZWRlY29yLnBuZw==.png" />
+      <Box mt={"20px"}>
+        <Box
+          bg="green"
+          h="490px"
+          w="1170px"
+          margin={"auto"}
+          pb={"21px"}
+          pl={"15px"}
+        >
+          <Box h={"73px"} bg="black" mt={"20px"} p="10px" color={"white"}>
+            <Box display="flex" gap={"155px"}>
+              <Box mr={"280px"}>
+                <Text lineHeight={"7rm"}>Home/My Cart</Text>
+
+                <Text>My Cart Items</Text>
+              </Box>
+              <Box mr={"80px"}>
+                <Text>Subtotal:</Text>
+              </Box>
+              <Button w="300px" h="40px" bg="#902735">
+                Place Order
+              </Button>
+            </Box>
           </Box>
-          <Box>
-            <Img src="https://cdn.plotch.io/image/upload/C/V/1671110241_NS5wbmc=.png" />
-          </Box>
-          <Box>
-            <Img src="https://cdn.plotch.io/image/upload/C/V/1671110248_Ni5wbmc=.png" />
-          </Box>
-          <Box>
-            <Img src="https://cdn.plotch.io/image/upload/C/V/1671110264_My5wbmc=.png" />
-          </Box>
-        </SimpleGrid>
+          <hr />
+        </Box>
       </Box>
       <Box bg="#902735" color={"white"} mt={8} pt={8} mb={20}>
         <Box maxW={"70%"} margin="auto">
@@ -103,4 +89,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default CartPage;
