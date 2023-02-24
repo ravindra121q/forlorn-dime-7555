@@ -106,14 +106,16 @@ const Navbar = () => {
             />
             WishList |
           </Box>
-          <Box display={"flex"} alignItems={"center"} textAlign="center">
-            {" "}
-            <Img
-              src="https://cdn-icons-png.flaticon.com/512/3514/3514491.png"
-              w={5}
-            />
-            <Text> Cart</Text>
-          </Box>
+          <RouterLink to={"/cartpage"}>
+            <Box display={"flex"} alignItems={"center"} textAlign="center">
+              {" "}
+              <Img
+                src="https://cdn-icons-png.flaticon.com/512/3514/3514491.png"
+                w={5}
+              />
+              <Text> Cart</Text>
+            </Box>
+          </RouterLink>
         </Box>
       </Box>
       <Box
