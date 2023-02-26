@@ -14,22 +14,22 @@ import {
 } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
 import { AuthContext } from "../Authentation/AuthContext";
-const CartPage = () => {
+const AdminPage = () => {
   const [count, setCount] = useState(0);
   const [newdata, setNewdata] = useState([]);
   const { cartpagedata } = useContext(AuthContext);
   console.log(cartpagedata);
   const getDATA = () => {
-    axios.get(`http://localhost:8080/Cartproducts`).then((res) => {
+    axios.get(`http://localhost:8080/UserData`).then((res) => {
       setNewdata(res.data);
       setCount(newdata.reduce((acc, item) => acc + item.price, 0));
     });
   };
   const Deletehandler = (id) => {
     // console.log(id);
-    axios.delete(`http://localhost:8080/Cartproducts/${id}`);
+    axios.delete(`http://localhost:8080/UserData/${id}`);
     axios
-      .get(`http://localhost:8080/Cartproducts`)
+      .get(`http://localhost:8080/UserData`)
       .then((res) => setNewdata(res.data));
     setCount(newdata.reduce((acc, item) => acc + item.price, 0));
   };
@@ -39,49 +39,23 @@ const CartPage = () => {
   }, []);
   return (
     <Box>
+      <Box mt={5} textDecoration="underline" fontSize={"3xl"}>
+        Admin Page
+      </Box>
       <Box mt={"20px"}>
         <Box w="1170px" margin={"auto"} pb={"21px"} pl={"15px"}>
-          <Box h={"73px"} mt={"20px"} p="10px" color={"white"}>
-            <Box display="flex" gap={"155px"}>
-              <Box color={"black"} mr={"280px"}>
-                <Text textColor={"black"} lineHeight={"7rm"}>
-                  <span color="red" colorScheme={"red "}>
-                    Home
-                  </span>
-                  /My Cart
-                </Text>
-
-                <Text>My Cart Items</Text>
-              </Box>
-              <Box color={"blackAlpha.900"} mr={"10px"}>
-                <Text>Subtotal: ${count}</Text>
-              </Box>
-              <Box ml={7}>
-                <RouterLink to="/payment">
-                  <Button
-                    disabled={() => newdata.length === 0}
-                    w="300px"
-                    h="40px"
-                    bg="#a52a2a"
-                  >
-                    Place Order
-                  </Button>
-                </RouterLink>
-              </Box>
-            </Box>
-          </Box>
           <Text textAlign={"center"}>
             ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
           </Text>
           <SimpleGrid color={"tomato.500"} columns={3} spacing={10}>
             <Box color={"#tomato"} opacity="500%">
-              <Text>Item Details</Text>
+              <Text>Name</Text>
             </Box>
             <Box color={"#brown"} opacity="500%">
-              <Text>Available in Stock</Text>
+              <Text>Email</Text>
             </Box>
             <Box color={"#tomato"} opacity="500%">
-              <Text>Price</Text>
+              <Text>Password</Text>
             </Box>
           </SimpleGrid>
           <Text textAlign={"center"}>
@@ -90,18 +64,13 @@ const CartPage = () => {
           <Box mt={4}>
             {newdata.length <= 0 ? (
               <Box>
-                <Box ml={353}>
-                  <Img
-                    h="400px"
-                    src="https://cdn-icons-png.flaticon.com/512/649/649931.png"
-                  />
-                </Box>
+                <Box ml={353}></Box>
                 <Box>
                   <Text fontSize={55} color="black">
-                    Cart is Empty
+                    No Users
                   </Text>
                   <RouterLink to="/">
-                    <Button>CONTINUE SHOPPING</Button>
+                    <Button>Add Users</Button>
                   </RouterLink>
                 </Box>
               </Box>
@@ -111,59 +80,19 @@ const CartPage = () => {
                   return (
                     <Box key={e.id}>
                       <SimpleGrid columns={3} spacing={10}>
-                        <Box w={"120%"} mb={3}>
-                          {" "}
-                          <Card
-                            direction={{ base: "column", sm: "row" }}
-                            overflow="hidden"
-                            variant="outline"
-                          >
-                            <Image
-                              objectFit="cover"
-                              maxW={{ base: "100%", sm: "150px" }}
-                              src={e.image}
-                              alt="Caffe Latte"
-                            />
-
-                            <Stack>
-                              <CardBody>
-                                <Heading size="md">{e.title}</Heading>
-                              </CardBody>
-
-                              <CardFooter>
-                                <Button
-                                  onClick={() => Deletehandler(e.id)}
-                                  variant="solid"
-                                  colorScheme="blue"
-                                >
-                                  Remove
-                                </Button>
-                              </CardFooter>
-                            </Stack>
-                          </Card>
+                        <Box
+                          onClick={() => Deletehandler(e.id)}
+                          w={"120%"}
+                          mb={3}
+                        >
+                          {e.name}
                         </Box>
-                        <Box>Available</Box>
-                        <Box>{e.price}</Box>
+                        <Box>{e.email}</Box>
+                        <Box>{e.password}</Box>
                       </SimpleGrid>
                     </Box>
                   );
                 })}
-              </Box>
-            )}
-          </Box>
-          <Box>
-            {newdata.length <= 0 ? null : (
-              <Box textAlign={"left"} ml={"863px"} mt={"43px"}>
-                <Text fontWeight={"bold"}>PRICE DETAILS</Text>
-                <SimpleGrid coloumns={2}>
-                  <Text color={"red.300"}>Price:- {count}</Text>
-                </SimpleGrid>
-                <Text fontWeight={"bold"}>Subtotal:- ${count}</Text>
-                <RouterLink to="/payment">
-                  <Button ml={5} mt={5} bg="#a52a2a" color={"white"} mb={5}>
-                    PLACE ORDER
-                  </Button>
-                </RouterLink>
               </Box>
             )}
           </Box>
@@ -225,4 +154,4 @@ const CartPage = () => {
   );
 };
 
-export default CartPage;
+export default AdminPage;

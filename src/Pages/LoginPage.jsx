@@ -18,28 +18,67 @@ import {
   Box,
   Img,
 } from "@chakra-ui/react";
+import {
+  Alert,
+  AlertIcon,
+  AlertTitle,
+  AlertDescription,
+} from "@chakra-ui/react";
 import axios from "axios";
 import { useContext } from "react";
 import { Link as RouterLink } from "react-router-dom";
 import { AuthContext } from "../Authentation/AuthContext";
+import { useNavigate } from "react-router-dom";
+import HomePage from "../Pages/HomePage";
+
 const SignUpPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [data, setData] = useState([]);
-  const { isAuth, login } = useContext(AuthContext);
+  const { isAuth, loginfn } = useContext(AuthContext);
+  const [displayalert, setDisplayalert] = useState(null);
+  const navigate = useNavigate();
   const Submithandler = () => {
     axios.get(`http://localhost:8080/UserData`).then((res) => {
       setData(res.data);
     });
-    data.map((e) => {
-      if (e.email === email && e.password === password) {
-        console.log("s");
-        return login();
-      }
-    });
+    if (email === "ravindrakumartilotia4@gmail.com" && password === "12345") {
+      console.log("s");
+      return navigate(`/adminpage`);
+    } else {
+      data.map((e) => {
+        if (e.email === email && e.password === password) {
+          setDisplayalert("");
+          return loginfn([]);
+        }
+      });
+    }
   };
+
   return (
     <Box w={"50%"} bg="light-50" border="1px solid red" margin="auto" mt="3%">
+      <Box>
+        {displayalert == "" ? (
+          <Alert
+            status="success"
+            variant="subtle"
+            flexDirection="column"
+            alignItems="center"
+            justifyContent="center"
+            textAlign="center"
+            height="200px"
+          >
+            <AlertIcon boxSize="40px" mr={0} />
+            <AlertTitle mt={4} mb={1} fontSize="lg">
+              Application submitted!
+            </AlertTitle>
+            <AlertDescription maxWidth="sm">
+              Thanks for submitting your application. Our team will get back to
+              you soon.
+            </AlertDescription>
+          </Alert>
+        ) : null}
+      </Box>
       <Box
         fontFamily={"Montserrat Regular"}
         pt={"36px"}
