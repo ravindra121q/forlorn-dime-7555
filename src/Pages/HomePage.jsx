@@ -78,7 +78,7 @@ const HomePage = () => {
               </HStack>
             </Box>
             <Box>
-              <Text>OUR COMPANY</Text>
+              <Text onClick={<searchbar />}>OUR COMPANY</Text>
               <p>About Us</p>
               <p>Contact Us</p>
             </Box>

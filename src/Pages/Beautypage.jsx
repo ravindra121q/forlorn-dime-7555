@@ -29,35 +29,25 @@ import { calcLength } from "framer-motion";
 import CartPage from "./CartPage";
 import { useContext } from "react";
 import { AuthContext } from "../Authentation/AuthContext";
-import {
-  Alert,
-  AlertIcon,
-  AlertTitle,
-  AlertDescription,
-} from "@chakra-ui/react";
-import { useParams } from "react-router-dom";
-const ProductPage = () => {
+const Beautypage = () => {
   const [data, setData] = useState([]);
-  const [displayalert, setDisplayalert] = useState(null);
   const [isloading, setIsloading] = useState(false);
   const [sort, setSort] = useState("asc");
   const [page, setPage] = useState(1);
-  const [isConditionTrue, setIsConditionTrue] = useState(true);
   const [todos, setTodos] = useState([]);
   const { loginfn, isAuth, datafn } = useContext(AuthContext);
-  const { userId } = useParams();
   const getData = (page, sort) => {
     setIsloading(true);
     axios
       .get(
-        `http://localhost:8080/productpage?_limit=12&_page=${page}&_sort=price&_order=${sort}`
+        `http://localhost:8080/beauty?_limit=12&_page=${page}&_sort=price&_order=${sort}`
       )
       .then((res) => setData(res.data));
     setIsloading(false);
   };
   const pricehandler = (minPrice, maxPrice) => {
     axios
-      .get("http://localhost:8080/productpage", {
+      .get("http://localhost:8080/beauty", {
         params: {
           _limit: 12,
           _minprice: minPrice,
@@ -80,16 +70,7 @@ const ProductPage = () => {
     };
     const newTodo = [...todos, e];
     setTodos(newTodo);
-    setDisplayalert("");
     axios.post(`http://localhost:8080/Cartproducts`, AddnewItem).then(e);
-    alert("Item added");
-
-    const timeoutId = setTimeout(() => {
-      setIsConditionTrue(false);
-    }, 2000);
-
-    return () => clearTimeout(timeoutId);
-    setIsConditionTrue(false);
   };
 
   useEffect(() => {
@@ -313,4 +294,4 @@ const ProductPage = () => {
   );
 };
 
-export default ProductPage;
+export default Beautypage;

@@ -1,20 +1,27 @@
+import axios from "axios";
 import React from "react";
 import { createContext, useState } from "react";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 export const AuthContext = createContext();
+
 export const AuthContextProvider = ({ children }) => {
   const [isAuth, setIsAuth] = useState(false);
-  const login = () => {
-    console.log(isAuth);
+  const [cartpagedata, setCartpagedata] = useState([]);
+  const [count1, setCount1] = useState(0);
+  const navigate = useNavigate();
+  const loginfn = (data) => {
+    // console.log(isAuth);
     setIsAuth(true);
-    return console.log(isAuth);
+    setCartpagedata(data);
+    navigate(`/`);
   };
   const logout = () => {
     setIsAuth(false);
   };
 
   return (
-    <AuthContext.Provider value={(isAuth, login, logout)}>
+    <AuthContext.Provider value={{ isAuth, loginfn, logout, cartpagedata }}>
       {children}
     </AuthContext.Provider>
   );

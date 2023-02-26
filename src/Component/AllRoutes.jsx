@@ -8,6 +8,9 @@ import LoginPage from "../Pages/LoginPage";
 import Dashboard from "../Pages/Dashboard";
 import PrivateRoutes from "./PrivateRoutes";
 import CartPage from "../Pages/CartPage";
+import PaymentPage from "../Pages/PaymentPage";
+import Beautypage from "../Pages/Beautypage";
+import AdminPage from "../Pages/AdminPage";
 const AllRoutes = () => {
   return (
     <Routes>
@@ -22,8 +25,25 @@ const AllRoutes = () => {
       />
       <Route path="/signup" element={<SignUpPage />} />
       <Route path="/login" element={<LoginPage />} />
+      <Route path="/beauty" element={<Beautypage />} />
       <Route path="/dashboard" element={<Dashboard />} />
-      <Route path="/cartpage" element={<CartPage />} />
+      <Route
+        path="/cartpage"
+        element={
+          <PrivateRoutes>
+            <CartPage />
+          </PrivateRoutes>
+        }
+      />
+      <Route
+        path="/payment"
+        element={
+          <PrivateRoutes>
+            <PaymentPage />
+          </PrivateRoutes>
+        }
+      />
+      <Route path="/adminpage" element={<AdminPage />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

@@ -20,10 +20,30 @@ import {
 import { Link, Navigate } from "react-router-dom";
 import { Link as RouterLink } from "react-router-dom";
 import { useState } from "react";
+import { useContext, useEffect } from "react";
+import axios from "axios";
 import LoginPage from "../Pages/LoginPage";
+import { AuthContext } from "../Authentation/AuthContext";
+import { useNavigate } from "react-router-dom";
 const Navbar = () => {
   const [city, setCity] = useState("Division");
+  const { isAuth, login, logout, datafn } = useContext(AuthContext);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [data1, setData1] = useState([]);
+  const navigate = useNavigate;
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8080/productpage?q=${searchTerm}`)
+      .then((response) => setData1(response.data))
+      .catch((error) => console.error(error));
+  }, [searchTerm]);
 
+  function handleInputChange(event) {
+    setSearchTerm(event.target.value);
+  }
+  const handleKeyDown = () => {
+    console.log(data1);
+  };
   return (
     <div>
       <Box
@@ -45,7 +65,13 @@ const Navbar = () => {
         </div>
         <Box display="flex" w={"auto"} alignItems="center">
           <Center textAlign={"center"} mt={2}>
-            <Input w={"500px"} placeholder="SEARCH l Search for products " />
+            <Input
+              w={"500px"}
+              value={searchTerm}
+              onKeyDown={handleKeyDown}
+              onChange={handleInputChange}
+              placeholder="SEARCH l Search for products "
+            />
           </Center>
           <Popover>
             <PopoverTrigger>
@@ -85,16 +111,18 @@ const Navbar = () => {
             <Box marginRight={2} alignItems="center" display="flex">
               <Popover>
                 <PopoverTrigger>
-                  <RouterLink to="/login">
-                    <Button>
-                      {" "}
-                      <Img
-                        src="https://cdn-icons-png.flaticon.com/512/456/456212.png"
-                        w={4}
-                      />{" "}
-                      SignIn/Register
-                    </Button>
-                  </RouterLink>
+                  <Button>
+                    {" "}
+                    <Img
+                      src="https://cdn-icons-png.flaticon.com/512/456/456212.png"
+                      w={4}
+                    />
+                    {!isAuth ? (
+                      <a href="/login">SignIn / Register</a>
+                    ) : (
+                      <a href="/">Logout</a>
+                    )}
+                  </Button>
                 </PopoverTrigger>
               </Popover>
             </Box>
@@ -107,7 +135,12 @@ const Navbar = () => {
             WishList |
           </Box>
           <RouterLink to={"/cartpage"}>
-            <Box display={"flex"} alignItems={"center"} textAlign="center">
+            <Box
+              onClick={() => datafn}
+              display={"flex"}
+              alignItems={"center"}
+              textAlign="center"
+            >
               {" "}
               <Img
                 src="https://cdn-icons-png.flaticon.com/512/3514/3514491.png"
@@ -140,7 +173,9 @@ const Navbar = () => {
             <RouterLink to="/product">
               <Text>Fashion</Text>
             </RouterLink>
-            <Text>Personal & Beauty Care</Text>
+            <RouterLink to="/beauty">
+              <Text>Personal & Beauty Care</Text>
+            </RouterLink>
             <Text>Home Decor</Text>
             <Text>Product Near Me</Text>
           </Box>
